@@ -5,14 +5,13 @@ const { GoogleSpreadsheet } = require("google-spreadsheet");
 const { JWT } = require("google-auth-library");
 const cors = require("cors");
 require("dotenv").config();
-const creds = require("./secret.json");
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
 const serviceAccountAuth = new JWT({
-  email: creds.client_email,
-  key: creds.private_key,
+  email: process.env.CLIENT_EMAIL,
+  key: process.env.PRIVATE_KEY,
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
